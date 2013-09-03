@@ -12,25 +12,25 @@ module MCollective
       ['enable','disable'].each do |act|
         action act do
           validate :server, :shellsafe
-          run_hamanage act, request[:server]
+          run_haproxyctl act, request[:server]
         end
       end
       action 'status' do
-        run_hamanage 'status'
+        run_haproxyctl 'status'
       end
 
       private
-      def run_hamanage(action,server=nil)
+      def run_haproxyctl(action,server=nil)
         output = ''
-        cmd = ['/usr/bin/hamanage']
+        cmd = ['/usr/bin/haproxyctl']
         case action
         when 'enable','disable'
-          cmd << '-e' if action == 'enable'
-          cmd << '-d' if action == 'disable'
+          cmd << 'enable' if action == 'enable'
+          cmd << 'enable' if action == 'disable'
           cmd << server
           reply[:server] = server
         when 'status'
-          cmd << '-s'
+          cmd << 'show health'
         end
         reply[:status] = run(cmd, :stdout => :output, :chomp => true)
       end

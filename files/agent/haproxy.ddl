@@ -21,11 +21,11 @@ metadata :name        => "haproxy",
            :display_as  => "Server"
 
     output :output,
-           :description => "Output from hamanage",
+           :description => "Output from haproxyctl",
            :display_as  => "Output"
 
     output :status,
-           :description => "Return status of hamanage",
+           :description => "Return status of haproxyctl",
            :display_as  => "Return Status"
   end
 end
@@ -34,10 +34,10 @@ action 'status', :description => "Get status from haproxy" do
   display :always
 
   output :output,
-         :description => "Output from hamanage",
+         :description => "Output from haproxyctl",
          :display_as  => "Output"
 
   output :status,
-         :description => "Return status of hamanage",
+         :description => "Return status of haproxyctl",
          :display_as  => "Return Status"
  end
